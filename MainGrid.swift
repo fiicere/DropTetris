@@ -58,9 +58,9 @@ class MainGrid: Grid {
         return true
     }
     
-    func addPiece(p:Piece, coord:Coordinate){
+    func addPiece(coord:Coordinate){
         var sq:GridSq = sqDict[coord]!
-        sq.addPiece(p)
+        sq.addPiece()
     }
     
     func getSqToClear() -> Array<GridSq>{

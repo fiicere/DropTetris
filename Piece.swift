@@ -15,11 +15,13 @@ class Piece: SKSpriteNode {
     let validTint = UIColor.greenColor()
     let noColorBlend:CGFloat = 1
     let defaultColorBlend:CGFloat = 0.5
+    let pieceRatio = 0.9
+
     var myColor = UIColor.grayColor()
     
     init(sqSize:CGSize){
         
-        super.init(texture: SKTexture(imageNamed: "Spaceship.png"), color: myColor, size: sqSize)
+        super.init(texture: SKTexture(imageNamed: "Spaceship.png"), color: myColor, size: sqSize * pieceRatio)
         
     }
     

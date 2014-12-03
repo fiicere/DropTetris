@@ -83,9 +83,8 @@ class GameManager: SKNode {
     }
     
     private func movePiece(subGridCoord: Coordinate, mainGridCoord:Coordinate){
-        var p:Piece = subGrid.pieceAtSq(subGridCoord)
         subGrid.clearSq(subGridCoord)
-        mainGrid.addPiece(p, coord: mainGridCoord)
+        mainGrid.addPiece(mainGridCoord)
     }
     
     func tick(){

@@ -28,10 +28,11 @@ class GridSq : SKSpriteNode {
         super.init(texture: nil, color: myColor, size:sqSize * margin)
     }
     
-    func addPiece(piece:Piece){
+    func addPiece(){
         if(!occupied()){
-            contains = piece
-            self.addChild(piece)
+            var p:Piece = Piece(sqSize: self.size)
+            contains = p
+            self.addChild(p)
         }
     }
     

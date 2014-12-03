@@ -13,7 +13,6 @@ class Grid: SKSpriteNode {
     let dims:GridDimension
     let marginPixels = CGSize(width: 2, height: 2)
     let defaultColor = UIColor.darkGrayColor()
-    let pieceRatio = 0.9
     
     var sqSize:CGSize
     var sqDict:Dictionary<Coordinate, GridSq> = Dictionary<Coordinate, GridSq>()

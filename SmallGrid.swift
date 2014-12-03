@@ -39,8 +39,7 @@ class SmallGrid: Grid {
     func populate(){
         for sq : GridSq in sqDict.values{
             if(self.random()){
-                var p:Piece = Piece(sqSize: sqSize * pieceRatio)
-                sq.addPiece(p)
+                sq.addPiece()
             }
         }
         if(piecesInGrid() == 0){
