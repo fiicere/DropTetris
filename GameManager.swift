@@ -14,6 +14,8 @@ class GameManager: SKNode {
     
     var mainGrid:MainGrid
     var subGrid:SmallGrid
+    var score = 0
+    var scoreLabel:SKLabelNode = SKLabelNode()
     
     var validMoves:Array<Coordinate> = Array<Coordinate>()
     
@@ -23,8 +25,9 @@ class GameManager: SKNode {
                 
         super.init()
         
-        self.addChild(mainGrid)
-        self.addChild(subGrid)
+        addChild(mainGrid)
+        addChild(subGrid)
+        addScoreLabel()
         newValidMoves()
     }
     
@@ -44,9 +47,16 @@ class GameManager: SKNode {
         if(contains(validMoves, coord)) {
             transferTo(coord)
             subGrid.populate()
-            mainGrid.clearRowsAndCols()
+            clearRowsAndCols()
             newValidMoves()
         }
+    }
+    
+    private func clearRowsAndCols(){
+        var toClear:Array<GridSq> = mainGrid.getSqToClear()
+        score += toClear.count * toClear.count
+        updateScore()
+        mainGrid.clearSquares(toClear)
     }
     
     private func newValidMoves(){
@@ -80,6 +90,20 @@ class GameManager: SKNode {
     func tick(){
         mainGrid.tick()
         subGrid.tick()
+    }
+    
+    private func addScoreLabel(){
+        scoreLabel = SKLabelNode(fontNamed:FontsAndSizes.font)
+        scoreLabel.fontSize = FontsAndSizes.labelFontSize
+        scoreLabel.position = CGPoint.bottomRight + convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half()).toPoint() * CGVector(dx: -1, dy: 1)
+        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+        scoreLabel.fontColor = FontsAndSizes.labelFontColor
+        updateScore()
+        addChild(scoreLabel)
+    }
+    
+    func updateScore(){
+        scoreLabel.text = "\(score)"
     }
 
     required init?(coder aDecoder: NSCoder) {

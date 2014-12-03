@@ -19,8 +19,8 @@ class SmallGrid: Grid {
     init(marginRatio:CGFloat){
         let scale = 1 - marginRatio
         
-        let subGridSize = CGSize(width: scale * subGridSizeRatio / Constants.widthToHeight, height: scale * subGridSizeRatio)
-        let margin:CGVector = CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half()
+        let subGridSize = convertRatioToSize(CGSize(width: scale * subGridSizeRatio / Constants.widthToHeight, height: scale * subGridSizeRatio))
+        let margin:CGVector = convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half())
         
         myGridDims = GridDimension(numRows: subGridN, numCols: subGridN,
             gridSize: subGridSize,

@@ -55,3 +55,12 @@ public func / (left: CGVector, right: CGVector) -> CGVector {
 public func /= (inout left: CGVector, right: CGVector) {
     left = left / right
 }
+
+//TYPE CONVERSIONS
+public func convertSizeToRatio(size:CGVector) -> CGVector{
+    return size / Constants.screenSize.toVector()
+}
+
+public func convertRatioToSize(sizeRatio:CGVector) -> CGVector{
+    return sizeRatio * Constants.screenSize.toVector()
+}

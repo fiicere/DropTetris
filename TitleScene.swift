@@ -15,17 +15,17 @@ class TitleScene: SceneWTransitions {
         super.didMoveToView(view)
 
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+        let myLabel = SKLabelNode(fontNamed:FontsAndSizes.font)
         myLabel.text = "Count to Ten";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        myLabel.fontSize = FontsAndSizes.menuFontSize;
+        myLabel.position = CGPoint.middle;
         
         self.addChild(myLabel)
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        self.fadeToThisScene(GameScene())
+        self.fadeToThisScene(GameScene(size: self.size))
     }
     
     override func update(currentTime: CFTimeInterval) {

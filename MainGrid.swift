@@ -18,10 +18,10 @@ class MainGrid: Grid {
     let myGridDims:GridDimension
         
     init(marginRatio:CGFloat){
-        
         let scale = 1 - marginRatio
-        let mainGridSize = CGSize(width: scale * mainGridSizeRatio / Constants.widthToHeight, height: scale * mainGridSizeRatio)
-        let margin:CGVector = CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half()
+        
+        let mainGridSize = convertRatioToSize(CGSize(width: scale * mainGridSizeRatio / Constants.widthToHeight, height: scale * mainGridSizeRatio))
+        let margin:CGVector = convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half())
         
         myGridDims = GridDimension(numRows: mainGridN, numCols: mainGridN,
             gridSize: mainGridSize,
@@ -63,7 +63,7 @@ class MainGrid: Grid {
         sq.addPiece(p)
     }
     
-    func clearRowsAndCols(){
+    func getSqToClear() -> Array<GridSq>{
         var toClear:Array<GridSq> = Array<GridSq>()
         for(var x:Int = -Int(dims.numCols / 2); x <= Int(dims.numCols / 2); x++){
             var col:Array<GridSq> = getCol(x)
@@ -74,7 +74,7 @@ class MainGrid: Grid {
             var row:Array<GridSq> = getRow(y)
             if(isFull(row)){toClear.extend(row)}
         }
-        clearSquares(toClear)
+        return toClear
     }
     
     private func getRow(y:Int) -> Array<GridSq>{
