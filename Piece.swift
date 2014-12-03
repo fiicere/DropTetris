@@ -11,11 +11,31 @@ import SpriteKit
 
 
 class Piece: SKSpriteNode {
-    let myColor = UIColor.lightGrayColor()
+    let invalidTint = UIColor.redColor()
+    let validTint = UIColor.greenColor()
+    let noColorBlend:CGFloat = 1
+    let defaultColorBlend:CGFloat = 0.5
+    var myColor = UIColor.grayColor()
     
     init(sqSize:CGSize){
         
         super.init(texture: SKTexture(imageNamed: "Spaceship.png"), color: myColor, size: sqSize)
+        
+    }
+    
+    convenience init(sqSize:CGSize, valid:Bool){
+        self.init(sqSize: sqSize)
+        addTint(valid)
+    }
+    
+    func addTint(valid:Bool){
+        if(valid){myColor = validTint}
+        else{myColor = invalidTint}
+        self.colorBlendFactor = defaultColorBlend
+    }
+    
+    func removeTint(){
+        self.colorBlendFactor = noColorBlend
     }
     
     required init?(coder aDecoder: NSCoder) {

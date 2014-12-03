@@ -23,6 +23,14 @@ class GameScene: SceneWTransitions {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+
+    }
+    
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        // Display Indicator Grid
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         if(gameOver){
             self.fadeToThisScene(GameScene(size: size))
         }
@@ -31,8 +39,10 @@ class GameScene: SceneWTransitions {
             let touchLocation = touch.locationInNode(self)
             gameManager.newTouch(touch)
         }
+        
+        // Remove Indicator Grid
     }
-   
+    
     /* Called before each frame is rendered */
     override func update(currentTime: CFTimeInterval) {
         gameManager.tick()

@@ -14,6 +14,7 @@ class GameManager: SKNode {
     
     var mainGrid:MainGrid
     var subGrid:SmallGrid
+    
     var score = 0
     var scoreLabel:SKLabelNode = SKLabelNode()
     
