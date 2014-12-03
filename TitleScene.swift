@@ -15,9 +15,9 @@ class TitleScene: SceneWTransitions {
         super.didMoveToView(view)
 
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:FontsAndSizes.font)
+        let myLabel = SKLabelNode(fontNamed:Constants.font)
         myLabel.text = "Count to Ten";
-        myLabel.fontSize = FontsAndSizes.menuFontSize;
+        myLabel.fontSize = Constants.menuFontSize;
         myLabel.position = CGPoint.middle;
         
         self.addChild(myLabel)

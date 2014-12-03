@@ -18,6 +18,8 @@ class GridSq : SKSpriteNode {
     var changeTime:Double = 0
     
     var contains:Piece? = nil
+    var indicator:Piece? = nil
+
     
     init(coordinate:Coordinate, sqSize:CGSize){
         
@@ -59,6 +61,9 @@ class GridSq : SKSpriteNode {
         if(Clock.time - changeTime > switchBackRate){
             changeColorBack()
         }
+    }
+    
+    func addTintedPiece(){
     }
     
     required init?(coder aDecoder: NSCoder) {

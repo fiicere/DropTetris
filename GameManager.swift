@@ -94,11 +94,11 @@ class GameManager: SKNode {
     }
     
     private func addScoreLabel(){
-        scoreLabel = SKLabelNode(fontNamed:FontsAndSizes.font)
-        scoreLabel.fontSize = FontsAndSizes.labelFontSize
+        scoreLabel = SKLabelNode(fontNamed:Constants.font)
+        scoreLabel.fontSize = Constants.labelFontSize
         scoreLabel.position = CGPoint.bottomRight + convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half()).toPoint() * CGVector(dx: -1, dy: 1)
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-        scoreLabel.fontColor = FontsAndSizes.labelFontColor
+        scoreLabel.fontColor = Constants.labelFontColor
         updateScore()
         addChild(scoreLabel)
     }

@@ -73,9 +73,9 @@ class GameScene: SceneWTransitions {
     }
     
     func addLabel(){
-        let ggLabel = SKLabelNode(fontNamed:FontsAndSizes.font)
+        let ggLabel = SKLabelNode(fontNamed:Constants.font)
         ggLabel.text = "Game Over"
-        ggLabel.fontSize = FontsAndSizes.menuFontSize
+        ggLabel.fontSize = Constants.menuFontSize
         ggLabel.position = CGPoint.middle;
         ggLabel.fontColor = UIColor.redColor()
 
