@@ -48,7 +48,6 @@ class Grid: SKSpriteNode {
         self.addChild(sq)
     }
     
-    
     func tick(){
         for sq:GridSq in sqDict.values{
             sq.tick()

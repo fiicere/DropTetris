@@ -87,6 +87,16 @@ class MainGrid: Grid {
         }
     }
     
+    func showInvalidIndicatorAroundLoc(loc:CGPoint, occupied:Array<GridSq>){
+        var coord = getTouchedSq(loc)
+        for subSQ:GridSq in occupied{
+            var mainSQ:GridSq? = sqDict[coord + subSQ.coord]
+            if(mainSQ != nil){
+                mainSQ!.addInvalidIndicator()
+            }
+        }
+    }
+    
     private func getRow(y:Int) -> Array<GridSq>{
         var a:Array<GridSq> = Array<GridSq>()
         for sq:GridSq in sqDict.values{

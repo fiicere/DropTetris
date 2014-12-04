@@ -73,6 +73,11 @@ class GridSq : SKSpriteNode {
         self.addChild(indicator!)
     }
     
+    func addInvalidIndicator(){
+        indicator = Piece(sqSize:self.size, valid:false)
+        self.addChild(indicator!)
+    }
+    
     func removeIndicator(){
         if(indicator != nil){
             indicator?.removeFromParent()

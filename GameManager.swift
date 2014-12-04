@@ -42,10 +42,25 @@ class GameManager: SKNode {
     
     func addIndicator(touch:UITouch){
         var loc:CGPoint = touch.locationInNode(mainGrid)
-        removeAllIndicators()
         if(mainGrid.isInSq(loc)){
-            mainGrid.showIndicatorAroundLoc(loc, occupied: subGrid.getAllOccupied())
+            removeAllIndicators()
+            
+            var occupied = subGrid.getAllOccupied()
+            
+            if(isOnGrid(loc, occupied: occupied)){mainGrid.showIndicatorAroundLoc(loc, occupied: occupied)}
+            else{mainGrid.showInvalidIndicatorAroundLoc(loc, occupied: occupied)}
+            
         }
+    }
+    
+    private func isOnGrid(loc:CGPoint, occupied:Array<GridSq>) -> Bool{
+        var coord = mainGrid.getTouchedSq(loc)
+        
+        for subSQ:GridSq in occupied{
+            if(!contains(mainGrid.sqDict.keys, coord + subSQ.coord)){return false}
+        }
+        
+        return true
     }
     
     func removeAllIndicators(){
