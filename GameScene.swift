@@ -23,11 +23,15 @@ class GameScene: SceneWTransitions {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-
+        if(!gameOver){
+            gameManager.addIndicator(touches.anyObject() as UITouch)
+        }
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        // Display Indicator Grid
+        if(!gameOver){
+            gameManager.addIndicator(touches.anyObject() as UITouch)
+        }
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
@@ -40,7 +44,7 @@ class GameScene: SceneWTransitions {
             gameManager.newTouch(touch)
         }
         
-        // Remove Indicator Grid
+        gameManager.removeAllIndicators()
     }
     
     /* Called before each frame is rendered */

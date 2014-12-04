@@ -58,9 +58,9 @@ class MainGrid: Grid {
         return true
     }
     
-    func addPiece(coord:Coordinate){
+    func addPiece(p:Piece, coord:Coordinate){
         var sq:GridSq = sqDict[coord]!
-        sq.addPiece()
+        sq.addPiece(p)
     }
     
     func getSqToClear() -> Array<GridSq>{
@@ -75,6 +75,16 @@ class MainGrid: Grid {
             if(isFull(row)){toClear.extend(row)}
         }
         return toClear
+    }
+    
+    func showIndicatorAroundLoc(loc:CGPoint, occupied:Array<GridSq>){
+        var coord = getTouchedSq(loc)
+        for subSQ:GridSq in occupied{
+            var mainSQ:GridSq? = sqDict[coord + subSQ.coord]
+            if(mainSQ != nil){
+                mainSQ!.addIndicator()
+            }
+        }
     }
     
     private func getRow(y:Int) -> Array<GridSq>{

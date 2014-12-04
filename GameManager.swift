@@ -40,6 +40,20 @@ class GameManager: SKNode {
         }
     }
     
+    func addIndicator(touch:UITouch){
+        var loc:CGPoint = touch.locationInNode(mainGrid)
+        removeAllIndicators()
+        if(mainGrid.isInSq(loc)){
+            mainGrid.showIndicatorAroundLoc(loc, occupied: subGrid.getAllOccupied())
+        }
+    }
+    
+    func removeAllIndicators(){
+        for sq:GridSq in mainGrid.sqDict.values{
+            sq.removeIndicator()
+        }
+    }
+    
     private func getTouchedSquare(loc:CGPoint) -> Coordinate{
         return mainGrid.getTouchedSq(loc)
     }
@@ -83,8 +97,9 @@ class GameManager: SKNode {
     }
     
     private func movePiece(subGridCoord: Coordinate, mainGridCoord:Coordinate){
+        var p:Piece = subGrid.pieceAtSq(subGridCoord)
         subGrid.clearSq(subGridCoord)
-        mainGrid.addPiece(mainGridCoord)
+        mainGrid.addPiece(p, coord: mainGridCoord)
     }
     
     func tick(){

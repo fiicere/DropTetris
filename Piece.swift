@@ -17,12 +17,10 @@ class Piece: SKSpriteNode {
     let defaultColorBlend:CGFloat = 0.5
     let pieceRatio = 0.9
 
-    var myColor = UIColor.grayColor()
+    let myColor = UIColor.grayColor()
     
     init(sqSize:CGSize){
-        
         super.init(texture: SKTexture(imageNamed: "Spaceship.png"), color: myColor, size: sqSize * pieceRatio)
-        
     }
     
     convenience init(sqSize:CGSize, valid:Bool){
@@ -31,9 +29,10 @@ class Piece: SKSpriteNode {
     }
     
     func addTint(valid:Bool){
-        if(valid){myColor = validTint}
-        else{myColor = invalidTint}
+        if(valid){self.color = validTint}
+        else{self.color = invalidTint}
         self.colorBlendFactor = defaultColorBlend
+        self.zPosition = 10
     }
     
     func removeTint(){

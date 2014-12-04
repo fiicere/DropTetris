@@ -29,6 +29,10 @@ class GridSq : SKSpriteNode {
     }
     
     func addPiece(){
+        addPiece(Piece(sqSize: self.size))
+    }
+    
+    func addPiece(p:Piece){
         if(!occupied()){
             var p:Piece = Piece(sqSize: self.size)
             contains = p
@@ -64,7 +68,16 @@ class GridSq : SKSpriteNode {
         }
     }
     
-    func addTintedPiece(){
+    func addIndicator(){
+        indicator = Piece(sqSize:self.size, valid: !occupied())
+        self.addChild(indicator!)
+    }
+    
+    func removeIndicator(){
+        if(indicator != nil){
+            indicator?.removeFromParent()
+        }
+        indicator = nil
     }
     
     required init?(coder aDecoder: NSCoder) {
