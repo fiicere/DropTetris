@@ -16,3 +16,11 @@ struct Clock{
         time =  currentTime
     }
 }
+
+class Timer{
+    let startTime = Clock.time
+    
+    func timeElapsed() -> Double{
+        return Clock.time - startTime
+    }
+}
