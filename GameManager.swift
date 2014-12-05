@@ -15,7 +15,6 @@ class GameManager: SKNode {
     var mainGrid:MainGrid
     var subGrid:SmallGrid
     
-    var score = 0
     var scoreLabel:SKLabelNode = SKLabelNode()
     
     var validMoves:Array<Coordinate> = Array<Coordinate>()
@@ -84,8 +83,7 @@ class GameManager: SKNode {
     
     private func clearRowsAndCols(){
         var toClear:Array<GridSq> = mainGrid.getSqToClear()
-        score += toClear.count * toClear.count
-        updateScore()
+        Score.incrementScore(toClear.count * toClear.count)
         mainGrid.clearSquares(toClear)
     }
     
@@ -120,6 +118,7 @@ class GameManager: SKNode {
     func tick(){
         mainGrid.tick()
         subGrid.tick()
+        updateScore()
     }
     
     private func addScoreLabel(){
@@ -128,12 +127,11 @@ class GameManager: SKNode {
         scoreLabel.position = CGPoint.bottomRight + convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half()).toPoint() * CGVector(dx: -1, dy: 1)
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
         scoreLabel.fontColor = Constants.labelFontColor
-        updateScore()
         addChild(scoreLabel)
     }
     
     func updateScore(){
-        scoreLabel.text = "\(score)"
+        scoreLabel.text =  Score.getScore()
     }
 
     required init?(coder aDecoder: NSCoder) {
