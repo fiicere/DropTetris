@@ -29,6 +29,7 @@ class GameManager: SKNode {
         addChild(subGrid)
         addScoreLabel()
         newValidMoves()
+        Score.resetScore()
     }
     
     func newTouch(touch:UITouch){
