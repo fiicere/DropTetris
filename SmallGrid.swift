@@ -36,8 +36,9 @@ class SmallGrid: Grid {
     }
     
     func populate(){
+        var spawnProb = Difficulty.getSpawnProb()
         for sq : GridSq in sqDict.values{
-            if(self.random()){
+            if(self.random(spawnProb)){
                 sq.addPiece()
             }
         }
@@ -80,9 +81,9 @@ class SmallGrid: Grid {
         sqDict[coord]?.removePiece()
     }
     
-    private func random() -> Bool{
+    private func random(probability:Double) -> Bool{
         let aHighNum:Int = Int(1000000)
-        if(Double(arc4random_uniform(UInt32(aHighNum) )) < (Difficulty.getSpawnProb() * aHighNum)){
+        if(Double(arc4random_uniform(UInt32(aHighNum) )) < (probability * aHighNum)){
             return true
         }
         return false

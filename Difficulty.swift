@@ -15,6 +15,7 @@ struct Difficulty{
     private static let spIncrease = 0.001
     private static var spawnProb = minSpawnProb;
     private static var occupancyModifier = 1
+    private static var omScale = 0.1
     
     static func getSpawnProb() -> Double{
         update()
