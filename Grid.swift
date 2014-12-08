@@ -53,6 +53,14 @@ class Grid: SKSpriteNode {
             sq.tick()
         }
     }
+    
+    func occupancy() -> Int{
+        var occupancy = 0
+        for sq:GridSq in sqDict.values{
+            if (sq.occupied()) {occupancy += 1}
+        }
+        return occupancy
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

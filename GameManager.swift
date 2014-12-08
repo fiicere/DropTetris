@@ -121,6 +121,7 @@ class GameManager: SKNode {
         mainGrid.tick()
         subGrid.tick()
         updateScore()
+        updateDifficulty()
     }
     
     private func addScoreLabel(){
@@ -134,6 +135,10 @@ class GameManager: SKNode {
     
     func updateScore(){
         scoreLabel.text =  Score.getScore()
+    }
+    
+    func updateDifficulty(){
+        Difficulty.update(Double(mainGrid.occupancy()) / mainGrid.dims.numCols / mainGrid.dims.numRows);
     }
 
     required init?(coder aDecoder: NSCoder) {

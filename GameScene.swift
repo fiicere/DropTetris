@@ -49,7 +49,6 @@ class GameScene: SceneWTransitions {
     
     /* Called before each frame is rendered */
     override func update(currentTime: CFTimeInterval) {
-        Clock.updateTime(currentTime)
         Score.update()
         gameManager.tick()
         if(checkGameOver()){endGame()}
