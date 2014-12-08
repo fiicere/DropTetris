@@ -12,7 +12,6 @@ import SpriteKit
 class SmallGrid: Grid {
     let subGridSizeRatio:CGFloat = 0.33333333333
     let subGridN = 3
-    let spawnProb = 0.4
     
     let myGridDims:GridDimension
     
@@ -83,7 +82,7 @@ class SmallGrid: Grid {
     
     private func random() -> Bool{
         let aHighNum:Int = Int(1000000)
-        if(Double(arc4random_uniform(UInt32(aHighNum) )) < (spawnProb * aHighNum)){
+        if(Double(arc4random_uniform(UInt32(aHighNum) )) < (Difficulty.getSpawnProb() * aHighNum)){
             return true
         }
         return false

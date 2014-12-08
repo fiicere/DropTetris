@@ -30,6 +30,7 @@ class GameManager: SKNode {
         addScoreLabel()
         newValidMoves()
         Score.resetScore()
+        Difficulty.resetDifficulty()
     }
     
     func newTouch(touch:UITouch){
