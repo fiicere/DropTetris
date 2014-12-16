@@ -36,7 +36,8 @@ class GridWithTransformations : Grid{
     }
     
     private func translate(d: Direction){
-        for sq:GridSq in occupied(){
+        var a = occupied()  //IMPORTANT: do NOT modify a list while iterating through it ;)
+        for sq:GridSq in a{
             var piece = sq.contains!
             clearSq(sq.coord)
             addPiece(piece, coord:sq.coord.adjacent(d))

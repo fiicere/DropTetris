@@ -51,8 +51,8 @@ public struct Coordinate : Hashable{
     
 }
  
-enum Direction{
-    case UP, DOWN, LEFT, RIGHT, NONE
+enum Direction : String{
+    case UP="UP", DOWN = "DOWN", LEFT="LEFT", RIGHT="RIGHT", NONE="NONE"
     static let all : Array<Direction> = [UP, DOWN, LEFT, RIGHT]
     
     func opposite() -> Direction{

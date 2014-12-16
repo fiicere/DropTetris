@@ -45,6 +45,7 @@ class SmallGrid: GridWithTransformations {
         if(piecesInGrid() == 0){
             populate()
         }
+        center()
     }
     
     func clearAllPieces(){
