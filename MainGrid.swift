@@ -58,11 +58,6 @@ class MainGrid: Grid {
         return true
     }
     
-    func addPiece(p:Piece, coord:Coordinate){
-        var sq:GridSq = sqDict[coord]!
-        sq.addPiece(p)
-    }
-    
     func getSqToClear() -> Array<GridSq>{
         var toClear:Array<GridSq> = Array<GridSq>()
         for(var x:Int = -Int(dims.numCols / 2); x <= Int(dims.numCols / 2); x++){

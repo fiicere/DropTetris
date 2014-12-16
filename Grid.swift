@@ -43,7 +43,7 @@ class Grid: SKSpriteNode {
         }
     }
     
-    func addGridSq(sq:GridSq){
+    private func addGridSq(sq:GridSq){
         sqDict.updateValue(sq, forKey: sq.coord)
         self.addChild(sq)
     }
@@ -54,16 +54,32 @@ class Grid: SKSpriteNode {
         }
     }
     
-    func occupancy() -> Int{
-        var occupancy = 0
+    func occupied() -> Array<GridSq>{
+        var a = Array<GridSq>()
         for sq:GridSq in sqDict.values{
-            if (sq.occupied()) {occupancy += 1}
+            if (sq.occupied()) {a.append(sq)}
         }
-        return occupancy
+        return a
     }
-
+    
+    func coordIsInGrid(c:Coordinate) -> Bool{
+        return contains(sqDict.keys, c)
+    }
+    
+    
+    func addPiece(p:Piece, coord:Coordinate){
+        var sq:GridSq = sqDict[coord]!
+        sq.addPiece(p)
+    }
+    
+    func clearSq(coord:Coordinate) {
+        sqDict[coord]?.removePiece()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
 }
+
+

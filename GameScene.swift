@@ -20,6 +20,8 @@ class GameScene: SceneWTransitions {
         
         gameManager.zPosition = 1
         self.addChild(gameManager);
+        
+        println("The opposite of right is \(Direction.RIGHT.opposite())")
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class SmallGrid: Grid {
+class SmallGrid: GridWithTransformations {
     let subGridSizeRatio:CGFloat = 0.33333333333
     let subGridN = 3
     
@@ -75,10 +75,6 @@ class SmallGrid: Grid {
         
         var p:Piece = sqDict[coord]!.contains!
         return p
-    }
-    
-    func clearSq(coord:Coordinate) {
-        sqDict[coord]?.removePiece()
     }
     
     private func random(probability:Double) -> Bool{

@@ -138,7 +138,7 @@ class GameManager: SKNode {
     }
     
     func updateDifficulty(){
-        Difficulty.update(Double(mainGrid.occupancy()) / mainGrid.dims.numCols / mainGrid.dims.numRows);
+        Difficulty.update(Double(mainGrid.occupied().count) / mainGrid.dims.numCols / mainGrid.dims.numRows);
     }
 
     required init?(coder aDecoder: NSCoder) {
