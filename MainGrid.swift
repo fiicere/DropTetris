@@ -114,6 +114,13 @@ class MainGrid: Grid {
             sq.changeColor()
         }
     }
+    
+    func isInSq(loc:CGPoint) -> Bool{
+        for sq : GridSq in sqDict.values{
+            if(CGRectContainsPoint(sq.frame, loc)){return true}
+        }
+        return false
+    }
 
 
     required init?(coder aDecoder: NSCoder) {

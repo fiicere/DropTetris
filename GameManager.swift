@@ -40,9 +40,8 @@ class GameManager: SKNode {
             attemptTransferTo(getTouchedSquare(loc))
         }
         
-        println("newtouch")
-        if(subGrid.isInSq(loc)){
-            println("Touch is in sq")
+        println("newtouch is in small grid: \(subGrid.touchingGridSq(loc))")
+        if(subGrid.touchingGridSq(loc)){
             subGrid.rotate(Rotation.CW)
         }
     }
