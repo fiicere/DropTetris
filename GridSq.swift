@@ -11,7 +11,7 @@ import SpriteKit
 class GridSq : SKSpriteNode {
     var coord:Coordinate
     let myColor = UIColor.lightGrayColor()
-    let clearColor = UIColor.blueColor()
+    let clearColor = UIColor.whiteColor()
     let margin = 0.95
     
     let switchBackRate:Double = 0.3

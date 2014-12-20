@@ -17,8 +17,6 @@ class GameManager: SKNode {
     
     var scoreLabel:SKLabelNode = SKLabelNode()
     
-    var validMoves:Array<Coordinate> = Array<Coordinate>()
-    
     override init(){
         mainGrid = MainGrid(marginRatio: marginRatio)
         subGrid = SmallGrid(marginRatio: marginRatio)
@@ -28,7 +26,6 @@ class GameManager: SKNode {
         addChild(mainGrid)
         addChild(subGrid)
         addScoreLabel()
-        newValidMoves()
         Score.resetScore()
         Difficulty.resetDifficulty()
     }
@@ -41,7 +38,6 @@ class GameManager: SKNode {
         }
         
         loc = touch.locationInNode(subGrid)
-        println("newtouch is in small grid: \(subGrid.isInSq(loc))")
         if(subGrid.isInSq(loc)){
             subGrid.rotate(Rotation.CW)
         }
@@ -81,11 +77,10 @@ class GameManager: SKNode {
     }
     
     private func attemptTransferTo(coord:Coordinate){
-        if(contains(validMoves, coord)) {
+        if(canTransferTo(coord)){
             transferTo(coord)
             subGrid.populate()
             clearRowsAndCols()
-            newValidMoves()
         }
     }
     
@@ -95,13 +90,16 @@ class GameManager: SKNode {
         mainGrid.clearSquares(toClear)
     }
     
-    private func newValidMoves(){
-        validMoves = Array<Coordinate>()
-        for coord:Coordinate in mainGrid.sqDict.keys{
-            if(canTransferTo(coord)){
-                validMoves.append(coord)
+    func hasValidMove() -> Bool{
+        for(var i = 0; i<4; i++){
+            for coord:Coordinate in mainGrid.sqDict.keys{
+                if(canTransferTo(coord)){
+                    return true
+                }
             }
+            subGrid.rotate(Rotation.CW)
         }
+        return false
     }
     
     private func canTransferTo(coord:Coordinate) -> Bool{

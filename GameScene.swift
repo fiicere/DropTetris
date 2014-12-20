@@ -55,10 +55,7 @@ class GameScene: SceneWTransitions {
     }
     
     func checkGameOver() -> Bool{
-        if(gameManager.validMoves.count == 0){
-            return true
-        }
-        return false
+        return !gameManager.hasValidMove()
     }
     
     func endGame(){

@@ -55,7 +55,6 @@ class GridWithTransformations : Grid{
     
     
     func rotate(r:Rotation){
-        println("Rotation = \(r.rawValue)")
         switch r{
         case .CW:
             for sq:GridSq in sqDict.values{
