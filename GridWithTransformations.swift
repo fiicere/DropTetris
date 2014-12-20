@@ -69,5 +69,6 @@ class GridWithTransformations : Grid{
             println("ERROR: Rotation with type 'NONE'")
         }
         
+        updateGridSqs()
     }
 }

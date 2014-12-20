@@ -62,14 +62,6 @@ class SmallGrid: GridWithTransformations {
         return numPieces
     }
     
-    func getAllOccupied() -> Array<GridSq>{
-        var array:Array = Array<GridSq>()
-        for sq:GridSq in sqDict.values{
-            if(sq.occupied()){array.append(sq)}
-        }
-        return array
-    }
-    
     func pieceAtSq(coord:Coordinate) -> Piece{
         assert(sqDict[coord] != nil, "ERROR: pieceAtSq entered invalid coord")
         assert(sqDict[coord]!.contains != nil, "ERROR: no piece at that coordinate")
@@ -82,13 +74,6 @@ class SmallGrid: GridWithTransformations {
         let aHighNum:Int = Int(1000000)
         if(Double(arc4random_uniform(UInt32(aHighNum) )) < (probability * aHighNum)){
             return true
-        }
-        return false
-    }
-    
-    func touchingGridSq(loc:CGPoint) -> Bool{
-        for sq : GridSq in sqDict.values{
-            if(CGRectContainsPoint(sq.frame, loc)){return true}
         }
         return false
     }

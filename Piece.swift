@@ -39,6 +39,7 @@ class Piece: SKSpriteNode {
         self.colorBlendFactor = noColorBlend
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

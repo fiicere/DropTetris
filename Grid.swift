@@ -86,6 +86,21 @@ class Grid: SKSpriteNode {
         }
     }
     
+    func isInSq(loc:CGPoint) -> Bool{
+        for sq : GridSq in sqDict.values{
+            if(CGRectContainsPoint(sq.frame, loc)){return true}
+        }
+        return false
+    }
+    
+    func getAllOccupied() -> Array<GridSq>{
+        var array:Array = Array<GridSq>()
+        for sq:GridSq in sqDict.values{
+            if(sq.occupied()){array.append(sq)}
+        }
+        return array
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
