@@ -30,13 +30,6 @@ class MainGrid: Grid {
         super.init(d: myGridDims)
     }
     
-    func isInSq(loc:CGPoint) -> Bool{
-        for sq : GridSq in sqDict.values{
-            if(CGRectContainsPoint(sq.frame, loc)){return true}
-        }
-        return false
-    }
-    
     func getTouchedSq(loc:CGPoint) -> Coordinate{
         for sq : GridSq in sqDict.values{
             if(CGRectContainsPoint(sq.frame, loc)){return sq.coord}

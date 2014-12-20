@@ -39,6 +39,12 @@ class GameManager: SKNode {
         if(mainGrid.isInSq(loc)){
             attemptTransferTo(getTouchedSquare(loc))
         }
+        
+        println("newtouch")
+        if(subGrid.isInSq(loc)){
+            println("Touch is in sq")
+            subGrid.rotate(Rotation.CW)
+        }
     }
     
     func addIndicator(touch:UITouch){

@@ -9,8 +9,8 @@
 import Foundation
 
 
-enum Rotation{
-    case CW, CCW, NONE
+enum Rotation : String{
+    case CW = "CW", CCW = "CCW", NONE = "NONE"
 }
 
 class GridWithTransformations : Grid{
@@ -51,5 +51,23 @@ class GridWithTransformations : Grid{
             }
         }
         return true
+    }
+    
+    
+    func rotate(r:Rotation){
+        println("Rotation = \(r.rawValue)")
+        switch r{
+        case .CW:
+            for sq:GridSq in sqDict.values{
+                sq.coord = Coordinate(x: sq.coord.y, y: -sq.coord.x)
+            }
+        case .CCW:
+            for sq:GridSq in sqDict.values{
+                sq.coord = Coordinate(x: -sq.coord.y, y: sq.coord.x)
+            }
+        default:
+            println("ERROR: Rotation with type 'NONE'")
+        }
+        
     }
 }

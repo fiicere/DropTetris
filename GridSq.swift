@@ -9,7 +9,7 @@
 import SpriteKit
 
 class GridSq : SKSpriteNode {
-    let coord:Coordinate
+    var coord:Coordinate
     let myColor = UIColor.lightGrayColor()
     let clearColor = UIColor.blueColor()
     let margin = 0.95

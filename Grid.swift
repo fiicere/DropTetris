@@ -37,7 +37,6 @@ class Grid: SKSpriteNode {
             for var y = 0; y < dims.numRows; y+=1{
                 var sq = GridSq(coordinate: Coordinate(x: x - Int(dims.numCols / 2), y: y - Int(dims.numRows / 2)),
                     sqSize: sqSize - convertSizeToRatio(marginPixels))
-                sq.position = CGPoint(x: (x + 0.5) * sqSize.width, y: (y + 0.5) * sqSize.height) - dims.gridSize.half().toVector()
                 self.addGridSq(sq)
             }
         }
@@ -45,6 +44,7 @@ class Grid: SKSpriteNode {
     
     private func addGridSq(sq:GridSq){
         sqDict.updateValue(sq, forKey: sq.coord)
+        sq.position = CGPoint(x: sq.coord.x * sqSize.width, y: sq.coord.y * sqSize.height)
         self.addChild(sq)
     }
     
@@ -74,6 +74,24 @@ class Grid: SKSpriteNode {
     
     func clearSq(coord:Coordinate) {
         sqDict[coord]?.removePiece()
+    }
+    
+    func updateGridSqs(){
+        var allSqs = sqDict.values
+        sqDict.removeAll(keepCapacity: true)
+        
+        for sq:GridSq in allSqs{
+            sq.removeFromParent()
+            addGridSq(sq)
+        }
+    }
+    
+    
+    func isInSq(loc:CGPoint) -> Bool{
+        for sq : GridSq in sqDict.values{
+            if(CGRectContainsPoint(sq.frame, loc)){return true}
+        }
+        return false
     }
     
     required init?(coder aDecoder: NSCoder) {
