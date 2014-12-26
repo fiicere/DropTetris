@@ -81,6 +81,7 @@ class GameManager: SKNode {
             transferTo(coord)
             subGrid.populate()
             clearRowsAndCols()
+            Difficulty.increaseSpawnProb()
         }
     }
     

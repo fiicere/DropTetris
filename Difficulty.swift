@@ -32,8 +32,15 @@ struct Difficulty{
         assert(occupancy >= 0, "ERROR: Cannot have an occupancy < 0")
 
         occupancyModifier = (occupancy - 0.5) * -2 * omScale
-        spawnProb = minSpawnProb + spIncrease * timer.timeElapsed()
+//        spawnProb = minSpawnProb + spIncrease * timer.timeElapsed()
+//        if(spawnProb > maxSpawnProb) {spawnProb = maxSpawnProb}
+    }
+    
+    static func increaseSpawnProb(){
+        spawnProb += spIncrease
         if(spawnProb > maxSpawnProb) {spawnProb = maxSpawnProb}
+        
+        println("Spawn Probability = \(spawnProb)")
     }
     
     static func resetDifficulty(){

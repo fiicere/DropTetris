@@ -14,7 +14,7 @@ class GridSq : SKSpriteNode {
     let clearColor = UIColor.whiteColor()
     let margin = 0.95
     
-    let switchBackRate:Double = 0.3
+    let switchBackRate:Double = 0.2
     var changeBackTimer:Timer = Timer()
     
     var contains:Piece? = nil
