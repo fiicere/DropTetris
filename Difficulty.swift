@@ -39,8 +39,6 @@ struct Difficulty{
     static func increaseSpawnProb(){
         spawnProb += spIncrease
         if(spawnProb > maxSpawnProb) {spawnProb = maxSpawnProb}
-        
-        println("Spawn Probability = \(spawnProb)")
     }
     
     static func resetDifficulty(){

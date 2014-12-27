@@ -14,4 +14,20 @@ struct GridDimension{
     var numCols:Int
     var gridSize:CGSize
     var origin:CGPoint
+ 
+    func rowMax()-> Int{
+        return Int(numRows / 2)
+    }
+    
+    func rowMin()-> Int{
+        return -rowMax()
+    }
+    
+    func colMax()-> Int{
+        return Int(numCols / 2)
+    }
+    
+    func colMin()-> Int{
+        return -colMax()
+    }
 }
