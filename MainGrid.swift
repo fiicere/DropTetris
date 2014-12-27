@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class MainGrid: Grid {
+class MainGrid: GridWithSqs {
     
     let mainGridSizeRatio:CGFloat = 1
     

@@ -13,7 +13,7 @@ enum Rotation : String{
     case CW = "CW", CCW = "CCW", NONE = "NONE"
 }
 
-class GridWithTransformations : Grid{
+class GridWithTransformations : GridWithSqs{
     
     override init(d:GridDimension){
         super.init(d: d)

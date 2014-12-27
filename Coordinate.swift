@@ -22,6 +22,7 @@ public struct Coordinate : Hashable{
     static var null:Coordinate = Coordinate(x: Int.min, y: Int.min)
     static let unitX = Coordinate(x: 1, y: 0)
     static let unitY = Coordinate(x: 0, y: 1)
+    static let zero = Coordinate(x: 0, y: 0)
     
     public var hashValue : Int {get {return "\(x),\(y)".hashValue}}
     
