@@ -53,12 +53,12 @@ class MainGrid: Grid {
     
     func getSqToClear() -> Array<GridSq>{
         var toClear:Array<GridSq> = Array<GridSq>()
-        for(var x:Int = dims.colMin(); x <= dims.colMax(); x++){
+        for(var x:Int = -Int(dims.numCols / 2); x <= Int(dims.numCols / 2); x++){
             var col:Array<GridSq> = getCol(x)
             if (isFull(col)){toClear.extend(col)}
         }
         
-        for(var y:Int = dims.colMin(); y <= dims.colMax(); y++){
+        for(var y:Int = -Int(dims.numRows / 2); y <= Int(dims.numRows / 2); y++){
             var row:Array<GridSq> = getRow(y)
             if(isFull(row)){toClear.extend(row)}
         }

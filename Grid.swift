@@ -33,9 +33,9 @@ class Grid: SKSpriteNode {
     }
     
     func initGridSqs(){
-        for var x = dims.colMin(); x < dims.colMax(); x+=1{
-            for var y = dims.rowMin(); y < dims.rowMax(); y+=1{
-                var sq = GridSq(coordinate: Coordinate(x: x, y: y),
+        for var x = 0; x < dims.numCols; x+=1{
+            for var y = 0; y < dims.numRows; y+=1{
+                var sq = GridSq(coordinate: Coordinate(x: x - Int(dims.numCols / 2), y: y - Int(dims.numRows / 2)),
                     sqSize: sqSize - convertSizeToRatio(marginPixels))
                 self.addGridSq(sq)
             }
