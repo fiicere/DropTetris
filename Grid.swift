@@ -11,7 +11,6 @@ import SpriteKit
 class Grid: SKSpriteNode {
     
     let dims:GridDimension
-    let marginPixels = CGSize(width: 2, height: 2)
     let defaultColor = UIColor.darkGrayColor()
     
     var sqDict:Dictionary<Coordinate, GridSq> = Dictionary<Coordinate, GridSq>()
@@ -33,7 +32,7 @@ class Grid: SKSpriteNode {
         for var x = dims.colMin(); x <= dims.colMax(); x+=1{
             for var y = dims.rowMin(); y <= dims.rowMax(); y+=1{
                 var sq = GridSq(coordinate: Coordinate(x: x, y: y),
-                    sqSize: Layout.gridSqSize - convertSizeToRatio(marginPixels))
+                    sqSize: Layout.gridSqSize - convertSizeToRatio(Layout.gridLineSize))
                 self.addGridSq(sq)
             }
         }
@@ -100,6 +99,11 @@ class Grid: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func removeAllChildren() {
+        sqDict.removeAll(keepCapacity: true)
+        super.removeAllChildren()
     }
 
 }
