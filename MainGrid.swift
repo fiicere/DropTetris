@@ -17,7 +17,7 @@ class MainGrid: Grid {
         
     init(){
         
-        let mainGridSize = Layout.GridSqSize * Rules.mainGridN 
+        let mainGridSize = Layout.gridSqSize * Rules.mainGridN
         
         myGridDims = GridDimension(numRows: mainGridN, numCols: mainGridN,
             gridSize: mainGridSize,

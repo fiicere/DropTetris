@@ -14,7 +14,7 @@ class SmallGrid: GridWithTransformations {
     
     init(marginRatio:CGFloat){
         
-        let subGridSize = Layout.GridSqSize * Rules.subGridN
+        let subGridSize = Layout.gridSqSize * Rules.subGridN
         
         myGridDims = GridDimension(numRows: Rules.subGridN, numCols: Rules.subGridN,
             gridSize: subGridSize,

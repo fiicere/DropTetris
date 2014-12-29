@@ -33,7 +33,7 @@ class Grid: SKSpriteNode {
         for var x = dims.colMin(); x <= dims.colMax(); x+=1{
             for var y = dims.rowMin(); y <= dims.rowMax(); y+=1{
                 var sq = GridSq(coordinate: Coordinate(x: x, y: y),
-                    sqSize: Layout.GridSqSize - convertSizeToRatio(marginPixels))
+                    sqSize: Layout.gridSqSize - convertSizeToRatio(marginPixels))
                 self.addGridSq(sq)
             }
         }
@@ -41,7 +41,7 @@ class Grid: SKSpriteNode {
     
     private func addGridSq(sq:GridSq){
         sqDict.updateValue(sq, forKey: sq.coord)
-        sq.position = CGPoint(x: sq.coord.x * Layout.GridSqSize.width, y: sq.coord.y * Layout.GridSqSize.height)
+        sq.position = CGPoint(x: sq.coord.x * Layout.gridSqSize.width, y: sq.coord.y * Layout.gridSqSize.height)
         self.addChild(sq)
     }
     
