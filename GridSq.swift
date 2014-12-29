@@ -12,7 +12,6 @@ class GridSq : SKSpriteNode {
     var coord:Coordinate
     let myColor = UIColor.lightGrayColor()
     let clearColor = UIColor.whiteColor()
-    let margin = 0.95
     
     let switchBackRate:Double = 0.2
     var changeBackTimer:Timer = Timer()
@@ -25,7 +24,7 @@ class GridSq : SKSpriteNode {
         
         coord = coordinate
         
-        super.init(texture: nil, color: myColor, size:sqSize * margin)
+        super.init(texture: nil, color: myColor, size:sqSize * Layout.gridSqMargin)
     }
     
     func addPiece(){
