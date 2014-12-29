@@ -18,7 +18,7 @@ class GameManager: SKNode {
     var scoreLabel:SKLabelNode = SKLabelNode()
     
     override init(){
-        mainGrid = MainGrid(marginRatio: marginRatio)
+        mainGrid = MainGrid()
         subGrid = SmallGrid(marginRatio: marginRatio)
                 
         super.init()
@@ -132,7 +132,7 @@ class GameManager: SKNode {
     private func addScoreLabel(){
         scoreLabel = SKLabelNode(fontNamed:Constants.font)
         scoreLabel.fontSize = Constants.labelFontSize
-        scoreLabel.position = CGPoint.bottomRight + convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half()).toPoint() * CGVector(dx: -1, dy: 1)
+        scoreLabel.position = CGPoint.bottomRight + convertRatioToSize(CGVector(dx: marginRatio / Layout.widthToHeight, dy: marginRatio).half()).toPoint() * CGVector(dx: -1, dy: 1)
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
         scoreLabel.fontColor = Constants.labelFontColor
         addChild(scoreLabel)

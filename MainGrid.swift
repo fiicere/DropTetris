@@ -10,22 +10,20 @@ import Foundation
 import SpriteKit
 
 class MainGrid: Grid {
-    
-    let mainGridSizeRatio:CGFloat = 1
-    
+        
     let mainGridN = 9
     
     let myGridDims:GridDimension
         
-    init(marginRatio:CGFloat){
-        let scale = 1 - marginRatio
+    init(){
         
-        let mainGridSize = convertRatioToSize(CGSize(width: scale * mainGridSizeRatio / Constants.widthToHeight, height: scale * mainGridSizeRatio))
-        let margin:CGVector = convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half())
+        let mainGridSize = Layout.GridSqSize * Rules.mainGridN 
         
         myGridDims = GridDimension(numRows: mainGridN, numCols: mainGridN,
             gridSize: mainGridSize,
-            origin: (mainGridSize.toVector().half() + margin).toPoint());
+            origin: (mainGridSize.toVector().half() + Layout.screenMarginSize.toVector()).toPoint());
+        
+        println("My Size = (\(mainGridSize.width),\(mainGridSize.height))")
         
         super.init(d: myGridDims)
     }

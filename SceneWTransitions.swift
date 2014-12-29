@@ -13,7 +13,7 @@ class SceneWTransitions: SKScene {
     var isTransitioning:Bool = false
 
     override func didMoveToView(view: SKView) {
-        Constants.screenSize = view.bounds.size
+        Layout.screenSize = view.bounds.size
     }
     
     let duration = 0.5

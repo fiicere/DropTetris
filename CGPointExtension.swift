@@ -34,17 +34,17 @@ import CoreGraphics
 import SpriteKit
 
 public extension CGPoint {
-    static var left: CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 0, dy: 0.5)).toPoint()
-    static var right: CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 1, dy: 0.5)).toPoint()
-    static var top: CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 0.5, dy: 1)).toPoint()
-    static var bottom: CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 0.5, dy: 0)).toPoint()
+    static var left: CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 0, dy: 0.5)).toPoint()
+    static var right: CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 1, dy: 0.5)).toPoint()
+    static var top: CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 0.5, dy: 1)).toPoint()
+    static var bottom: CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 0.5, dy: 0)).toPoint()
     
-    static var bottomLeft:CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 0, dy: 0)).toPoint()
-    static var bottomRight:CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 1, dy: 0)).toPoint()
-    static var topLeft:CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 0, dy: 1)).toPoint()
-    static var topRight:CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 1, dy: 1)).toPoint()
+    static var bottomLeft:CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 0, dy: 0)).toPoint()
+    static var bottomRight:CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 1, dy: 0)).toPoint()
+    static var topLeft:CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 0, dy: 1)).toPoint()
+    static var topRight:CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 1, dy: 1)).toPoint()
 
-    static var middle:CGPoint = (Constants.screenSize.toVector() * CGVector(dx: 0.5, dy: 0.5)).toPoint()
+    static var middle:CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 0.5, dy: 0.5)).toPoint()
 
     /**
     * Creates a new CGPoint given a CGVector.

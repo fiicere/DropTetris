@@ -14,7 +14,6 @@ class Grid: SKSpriteNode {
     let marginPixels = CGSize(width: 2, height: 2)
     let defaultColor = UIColor.darkGrayColor()
     
-    var sqSize:CGSize
     var sqDict:Dictionary<Coordinate, GridSq> = Dictionary<Coordinate, GridSq>()
 
     init(d:GridDimension) {
@@ -22,8 +21,6 @@ class Grid: SKSpriteNode {
         
         assert((d.numCols % 2) == 1, "ERROR: Grids must have an odd number of squares")
         assert((d.numRows % 2) == 1, "ERROR: Grids must have an odd number of squares")
-        
-        sqSize = CGSize(width: dims.gridSize.width / dims.numCols, height: dims.gridSize.height / dims.numRows)
         
         super.init(texture: nil, color: defaultColor, size: dims.gridSize)
         
@@ -36,8 +33,7 @@ class Grid: SKSpriteNode {
         for var x = dims.colMin(); x <= dims.colMax(); x+=1{
             for var y = dims.rowMin(); y <= dims.rowMax(); y+=1{
                 var sq = GridSq(coordinate: Coordinate(x: x, y: y),
-                    sqSize: sqSize - convertSizeToRatio(marginPixels))
-                println("Creating GridSq: (\(x), \(y))")
+                    sqSize: Layout.GridSqSize - convertSizeToRatio(marginPixels))
                 self.addGridSq(sq)
             }
         }
@@ -45,7 +41,7 @@ class Grid: SKSpriteNode {
     
     private func addGridSq(sq:GridSq){
         sqDict.updateValue(sq, forKey: sq.coord)
-        sq.position = CGPoint(x: sq.coord.x * sqSize.width, y: sq.coord.y * sqSize.height)
+        sq.position = CGPoint(x: sq.coord.x * Layout.GridSqSize.width, y: sq.coord.y * Layout.GridSqSize.height)
         self.addChild(sq)
     }
     

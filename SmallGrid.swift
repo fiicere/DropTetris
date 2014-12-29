@@ -10,20 +10,15 @@ import Foundation
 import SpriteKit
 
 class SmallGrid: GridWithTransformations {
-    let subGridSizeRatio:CGFloat = 0.33333333333
-    let subGridN = 3
-    
     let myGridDims:GridDimension
     
     init(marginRatio:CGFloat){
-        let scale = 1 - marginRatio
         
-        let subGridSize = convertRatioToSize(CGSize(width: scale * subGridSizeRatio / Constants.widthToHeight, height: scale * subGridSizeRatio))
-        let margin:CGVector = convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half())
+        let subGridSize = Layout.GridSqSize * Rules.subGridN
         
-        myGridDims = GridDimension(numRows: subGridN, numCols: subGridN,
+        myGridDims = GridDimension(numRows: Rules.subGridN, numCols: Rules.subGridN,
             gridSize: subGridSize,
-            origin: CGPoint.topRight - margin - subGridSize.toVector().half());
+            origin: CGPoint.topRight - Layout.screenMarginSize.toVector() - subGridSize.toVector().half());
         
         super.init(d: myGridDims)
         

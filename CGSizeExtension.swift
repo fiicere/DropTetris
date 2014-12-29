@@ -157,9 +157,9 @@ public func /= (inout left: CGSize, right: CGFloat) {
 
 //TYPE CONVERSIONS
 public func convertSizeToRatio(sizeInPixels:CGSize) -> CGSize{
-    return sizeInPixels / Constants.screenSize
+    return sizeInPixels / Layout.screenSize
 }
 
 public func convertRatioToSize(sizeRatio:CGSize) -> CGSize{
-    return sizeRatio * Constants.screenSize
+    return sizeRatio * Layout.screenSize
 }
