@@ -10,8 +10,6 @@ import Foundation
 import SpriteKit
 
 class MainGrid: Grid {
-        
-    let mainGridN = 9
     
     let myGridDims:GridDimension
         
@@ -19,7 +17,7 @@ class MainGrid: Grid {
         
         let mainGridSize = Layout.gridSqSize * Rules.mainGridN
         
-        myGridDims = GridDimension(numRows: mainGridN, numCols: mainGridN,
+        myGridDims = GridDimension(numRows: Rules.mainGridN, numCols: Rules.mainGridN,
             gridSize: mainGridSize,
             origin: (mainGridSize.toVector().half() + Layout.screenMarginSize.toVector()).toPoint());
         
