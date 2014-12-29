@@ -17,12 +17,11 @@ class MainGrid: Grid {
     
     let myGridDims:GridDimension
         
-    init(){
-        let scale = 1 - Constants.screenMarginRatio
+    init(marginRatio:CGFloat){
+        let scale = 1 - marginRatio
         
         let mainGridSize = convertRatioToSize(CGSize(width: scale * mainGridSizeRatio / Constants.widthToHeight, height: scale * mainGridSizeRatio))
-        let margin:CGVector = convertRatioToSize(CGVector(dx: Constants.screenMarginRatio / Constants.widthToHeight,
-            dy: Constants.screenMarginRatio).half())
+        let margin:CGVector = convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half())
         
         myGridDims = GridDimension(numRows: mainGridN, numCols: mainGridN,
             gridSize: mainGridSize,
