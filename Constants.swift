@@ -22,6 +22,8 @@ struct Constants {
 struct Rules {
     static let mainGridN = 9
     static let subGridN = 3
+    static let flashDuration:Double = 0.2
+
 }
 
 struct Layout{
@@ -38,4 +40,5 @@ struct Layout{
     static let gridSqSize = CGSize(width: screenSize.height - 2 * screenMargin,
         height: screenSize.height - 2 * screenMargin) / Rules.mainGridN
     static let gridSqMargin = 0.95
+
 }

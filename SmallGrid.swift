@@ -12,7 +12,7 @@ import SpriteKit
 class SmallGrid: GridWithTransformations {
     let myGridDims:GridDimension
     
-    init(marginRatio:CGFloat){
+    init(){
         
         let subGridSize = Layout.gridSqSize * Rules.subGridN
         

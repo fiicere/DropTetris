@@ -13,7 +13,6 @@ class GridSq : SKSpriteNode {
     let myColor = UIColor.lightGrayColor()
     let clearColor = UIColor.whiteColor()
     
-    let switchBackRate:Double = 0.2
     var changeBackTimer:Timer = Timer()
     
     var contains:Piece? = nil
@@ -62,7 +61,7 @@ class GridSq : SKSpriteNode {
     }
     
     func tick(){
-        if(changeBackTimer.timeElapsed() > switchBackRate){changeColorBack()}
+        if(changeBackTimer.timeElapsed() > Rules.flashDuration){changeColorBack()}
     }
     
     func addIndicator(){

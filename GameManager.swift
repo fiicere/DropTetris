@@ -19,7 +19,7 @@ class GameManager: SKNode {
     
     override init(){
         mainGrid = MainGrid()
-        subGrid = SmallGrid(marginRatio: marginRatio)
+        subGrid = SmallGrid()
                 
         super.init()
         
