@@ -15,11 +15,11 @@ class SmallGrid: GridWithTransformations {
     
     let myGridDims:GridDimension
     
-    init(marginRatio:CGFloat){
-        let scale = 1 - marginRatio
+    init(){
+        let scale = 1 - Constants.screenMarginRatio
         
         let subGridSize = convertRatioToSize(CGSize(width: scale * subGridSizeRatio / Constants.widthToHeight, height: scale * subGridSizeRatio))
-        let margin:CGVector = convertRatioToSize(CGVector(dx: marginRatio / Constants.widthToHeight, dy: marginRatio).half())
+        let margin:CGVector = convertRatioToSize(CGVector(dx: (Constants.screenMarginRatio / Constants.widthToHeight), dy: Constants.screenMarginRatio).half())
         
         myGridDims = GridDimension(numRows: subGridN, numCols: subGridN,
             gridSize: subGridSize,

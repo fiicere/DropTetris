@@ -10,17 +10,16 @@ import SpriteKit
 
 class GameManager: SKNode {
     
-    let marginRatio:CGFloat = 0.1
-    
     var mainGrid:MainGrid
     var subGrid:SmallGrid
+    var indicator:Indicator
     
     var scoreLabel:SKLabelNode = SKLabelNode()
     
     override init(){
-        mainGrid = MainGrid(marginRatio: marginRatio)
-        subGrid = SmallGrid(marginRatio: marginRatio)
-                
+        mainGrid = MainGrid()
+        subGrid = SmallGrid()
+        
         super.init()
         
         addChild(mainGrid)

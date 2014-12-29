@@ -37,7 +37,6 @@ class Grid: SKSpriteNode {
             for var y = dims.rowMin(); y <= dims.rowMax(); y+=1{
                 var sq = GridSq(coordinate: Coordinate(x: x, y: y),
                     sqSize: sqSize - convertSizeToRatio(marginPixels))
-                println("Creating GridSq: (\(x), \(y))")
                 self.addGridSq(sq)
             }
         }
@@ -104,6 +103,11 @@ class Grid: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func removeAllChildren() {
+        sqDict.removeAll(keepCapacity: true)
+        super.removeAllChildren()
     }
 
 }
