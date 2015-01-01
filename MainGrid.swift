@@ -20,9 +20,7 @@ class MainGrid: Grid {
         myGridDims = GridDimension(numRows: Rules.mainGridN, numCols: Rules.mainGridN,
             gridSize: mainGridSize,
             origin: (mainGridSize.toVector().half() + Layout.screenMarginSize.toVector()).toPoint());
-        
-        println("My Size = (\(mainGridSize.width),\(mainGridSize.height))")
-        
+                
         super.init(d: myGridDims)
     }
     

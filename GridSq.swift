@@ -27,12 +27,12 @@ class GridSq : SKSpriteNode {
     }
     
     func addPiece(){
-        addPiece(Piece(sqSize: self.size))
+        addPiece(Piece())
     }
     
     func addPiece(p:Piece){
         if(!occupied()){
-            var p:Piece = Piece(sqSize: self.size)
+            var p:Piece = Piece()
             contains = p
             self.addChild(p)
         }
@@ -65,12 +65,12 @@ class GridSq : SKSpriteNode {
     }
     
     func addIndicator(){
-        indicator = Piece(sqSize:self.size, valid: !occupied())
+        indicator = Piece(valid: !occupied())
         self.addChild(indicator!)
     }
     
     func addInvalidIndicator(){
-        indicator = Piece(sqSize:self.size, valid:false)
+        indicator = Piece(valid:false)
         self.addChild(indicator!)
     }
     
