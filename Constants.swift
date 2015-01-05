@@ -20,7 +20,7 @@ struct Constants {
 }
 
 struct Rules {
-    static let mainGridN = 9
+    static let mainGridN = 7
     static let subGridN = 3
     static let flashDuration:Double = 0.2
 
