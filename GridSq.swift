@@ -19,11 +19,11 @@ class GridSq : SKSpriteNode {
     var indicator:Piece? = nil
 
     
-    init(coordinate:Coordinate, sqSize:CGSize){
+    init(coordinate:Coordinate){
         
         coord = coordinate
         
-        super.init(texture: nil, color: myColor, size:sqSize * Layout.gridSqMargin)
+        super.init(texture: nil, color: myColor, size:Layout.gridSqSize - Layout.gridSqMarginPixels)
     }
     
     func addPiece(){

@@ -43,7 +43,7 @@ struct Layout{
     // GridSq
     static let gridSqSize = CGSize(width: screenSize.height - 2 * screenMargin,
         height: screenSize.height - 2 * screenMargin) / Rules.mainGridN
-    static let gridSqMargin = 0.95
+    static let gridSqMarginPixels = 2
     
     // Piece
     private static let pieceMarginRatio = 0.9
