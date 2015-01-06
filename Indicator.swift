@@ -20,6 +20,14 @@ class Indicator{
         contents = occupied
     }
     
+    func newContents(c:Array<GridSq>){
+        newContents(c.map({$0.coord}))
+    }
+    
+    func newContents(c:Array<Coordinate>){
+        contents = c
+    }
+    
     func moveTo(coord:Coordinate){
         center = coord
     }

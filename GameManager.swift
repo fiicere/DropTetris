@@ -54,6 +54,7 @@ class GameManager: SKNode {
         loc = touch.locationInNode(subGrid)
         if(subGrid.isInSq(loc)){
             subGrid.rotate(Rotation.CW)
+            mainGrid.newIndicatorContents(subGrid.occupied())
         }
     }
     

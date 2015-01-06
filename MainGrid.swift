@@ -108,6 +108,16 @@ class MainGrid: Grid {
         updateIndicator()
     }
     
+    func newIndicatorContents(c:Array<Coordinate>){
+        indicator.newContents(c)
+        updateIndicator()
+    }
+    
+    func newIndicatorContents(c:Array<GridSq>){
+        indicator.newContents(c)
+        updateIndicator()
+    }
+    
     private func updateIndicator(){
         removeAllIndicators()
         addIndicators()

@@ -51,26 +51,6 @@ public struct Coordinate : Hashable{
     }
     
 }
- 
-enum Direction : String{
-    case UP="UP", DOWN = "DOWN", LEFT="LEFT", RIGHT="RIGHT", NONE="NONE"
-    static let all : Array<Direction> = [UP, DOWN, LEFT, RIGHT]
-    
-    func opposite() -> Direction{
-        switch self{
-        case UP:
-            return DOWN
-        case DOWN:
-            return UP
-        case LEFT:
-            return RIGHT
-        case RIGHT:
-            return LEFT
-        default:
-            return NONE
-        }
-    }
- }
 
 public func + (left: Coordinate, right: Coordinate) -> Coordinate {
     return Coordinate(x: left.x + right.x, y: left.y + right.y)
