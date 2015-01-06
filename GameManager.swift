@@ -18,9 +18,9 @@ class GameManager: SKNode {
     var scoreLabel:SKLabelNode = SKLabelNode()
     
     override init(){
-        mainGrid = MainGrid()
         subGrid = SmallGrid()
-                
+        mainGrid = MainGrid(i: Indicator(occupied: subGrid.occupied()))
+        
         super.init()
         
         addChild(mainGrid)

@@ -12,17 +12,25 @@ import SpriteKit
 class MainGrid: Grid {
     
     let myGridDims:GridDimension
+    private var indicator:Indicator
+    
+    convenience init(){
+        var i = Indicator(occupied: Array<Coordinate>())
         
-    init(){
+        self.init(i: i)
+    }
+    
+    init(i:Indicator){
+        indicator = i
         
         let mainGridSize = Layout.gridSqSize * Rules.mainGridN
-        
         myGridDims = GridDimension(numRows: Rules.mainGridN, numCols: Rules.mainGridN,
             gridSize: mainGridSize,
             origin: (mainGridSize.toVector().half() + Layout.screenMarginSize.toVector()).toPoint());
-                
+        
         super.init(d: myGridDims)
     }
+    
     
     func getTouchedSq(loc:CGPoint) -> Coordinate{
         for sq : GridSq in sqDict.values{
@@ -106,6 +114,42 @@ class MainGrid: Grid {
         for sq:GridSq in sqA{
             sq.removePiece()
             sq.changeColor()
+        }
+    }
+    
+    /////////////////////INDICATOR FUNCTIONS///////////////////
+    func updateIndicator(){
+        removeAllIndicators()
+        addIndicators()
+    }
+    
+    private func removeAllIndicators(){
+        for sq:GridSq in sqDict.values{
+            sq.removeIndicator()
+        }
+    }
+    
+    private func addIndicators(){
+        if(indicator.indicatorInBounds(myGridDims.colMin(),
+            xMax: myGridDims.colMax(),
+            yMin: myGridDims.rowMin(),
+            yMax: myGridDims.rowMax())){
+                addValidIndicator()
+        }
+        else{
+            addInvalidIndicator()
+        }
+    }
+    
+    private func addValidIndicator(){
+        for c:Coordinate in indicator.getContents(){
+            if let sq = sqDict[c]{sq.addIndicator()}
+        }
+    }
+    
+    private func addInvalidIndicator(){
+        for c:Coordinate in indicator.getContents(){
+            if let sq = sqDict[c]{sq.addInvalidIndicator()}
         }
     }
 
