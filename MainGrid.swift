@@ -67,26 +67,6 @@ class MainGrid: Grid {
         return toClear
     }
     
-    func showIndicatorAroundLoc(loc:CGPoint, occupied:Array<GridSq>){
-        var coord = getTouchedSq(loc)
-        for subSQ:GridSq in occupied{
-            var mainSQ:GridSq? = sqDict[coord + subSQ.coord]
-            if(mainSQ != nil){
-                mainSQ!.addIndicator()
-            }
-        }
-    }
-    
-    func showInvalidIndicatorAroundLoc(loc:CGPoint, occupied:Array<GridSq>){
-        var coord = getTouchedSq(loc)
-        for subSQ:GridSq in occupied{
-            var mainSQ:GridSq? = sqDict[coord + subSQ.coord]
-            if(mainSQ != nil){
-                mainSQ!.addInvalidIndicator()
-            }
-        }
-    }
-    
     private func getRow(y:Int) -> Array<GridSq>{
         var a:Array<GridSq> = Array<GridSq>()
         for sq:GridSq in sqDict.values{
@@ -118,7 +98,17 @@ class MainGrid: Grid {
     }
     
     /////////////////////INDICATOR FUNCTIONS///////////////////
-    func updateIndicator(){
+    func newIndicator(i:Indicator){
+        indicator = i
+        updateIndicator()
+    }
+    
+    func moveIndicator(loc:CGPoint){
+        indicator.moveTo(getTouchedSq(loc))
+        updateIndicator()
+    }
+    
+    private func updateIndicator(){
         removeAllIndicators()
         addIndicators()
     }

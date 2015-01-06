@@ -31,6 +31,20 @@ class GameManager: SKNode {
     }
     
     func newTouch(touch:UITouch){
+        var loc = touch.locationInNode(mainGrid)
+        if(mainGrid.isInSq(loc)){
+            mainGrid.moveIndicator(loc)
+        }
+    }
+    
+    func movedTouch(touch:UITouch){
+        var loc = touch.locationInNode(mainGrid)
+        if(mainGrid.isInSq(loc)){
+            mainGrid.moveIndicator(loc)
+        }
+    }
+    
+    func touchEnded(touch:UITouch){
         var loc:CGPoint = touch.locationInNode(mainGrid)
         
         if(mainGrid.isInSq(loc)){
@@ -40,19 +54,6 @@ class GameManager: SKNode {
         loc = touch.locationInNode(subGrid)
         if(subGrid.isInSq(loc)){
             subGrid.rotate(Rotation.CW)
-        }
-    }
-    
-    func addIndicator(touch:UITouch){
-        var loc:CGPoint = touch.locationInNode(mainGrid)
-        if(mainGrid.isInSq(loc)){
-            removeAllIndicators()
-            
-            var occupied = subGrid.getAllOccupied()
-            
-            if(fitsOnGrid(loc, occupied: occupied)){mainGrid.showIndicatorAroundLoc(loc, occupied: occupied)}
-            else{mainGrid.showInvalidIndicatorAroundLoc(loc, occupied: occupied)}
-            
         }
     }
     
@@ -66,12 +67,6 @@ class GameManager: SKNode {
         return true
     }
     
-    func removeAllIndicators(){
-        for sq:GridSq in mainGrid.sqDict.values{
-            sq.removeIndicator()
-        }
-    }
-    
     private func getTouchedSquare(loc:CGPoint) -> Coordinate{
         return mainGrid.getTouchedSq(loc)
     }
@@ -82,6 +77,7 @@ class GameManager: SKNode {
             subGrid.populate()
             clearRowsAndCols()
             Difficulty.increaseSpawnProb()
+            mainGrid.newIndicator(Indicator(occupied: subGrid.occupied()))
         }
     }
     

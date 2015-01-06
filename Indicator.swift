@@ -18,19 +18,18 @@ class Indicator{
     
     init(occupied:Array<Coordinate>){
         contents = occupied
-        debugContents()
     }
     
     func moveTo(coord:Coordinate){
         center = coord
     }
     
-    func moveInDirection(d:Direction){
-        moveTo(center.adjacent(d))
-    }
-    
     func getContents() -> Array<Coordinate>{
-        return contents.map{$0 + self.center}
+        var shifted = Array<Coordinate>()
+        for c:Coordinate in contents{
+            shifted.append(c+center)
+        }
+        return shifted
     }
     
     func indicatorInBounds(xMin:Int, xMax:Int, yMin:Int, yMax:Int)->Bool{
