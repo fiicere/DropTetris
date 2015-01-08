@@ -32,6 +32,10 @@ class Indicator{
         center = coord
     }
     
+    func moveTo(d: Direction){
+        center = center.adjacent(d)
+    }
+    
     func getContents() -> Array<Coordinate>{
         var shifted = Array<Coordinate>()
         for c:Coordinate in contents{

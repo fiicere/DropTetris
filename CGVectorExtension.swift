@@ -18,6 +18,10 @@ public extension CGVector {
     public func half() -> CGVector{
         return CGVector(dx: self.dx / 2, dy: self.dy / 2)
     }
+    
+    public func magnitude() -> Double{
+        return sqrt(Double(self.dx * self.dx) + Double(self.dy * self.dy))
+    }
 }
 
 //ADDITION

@@ -36,29 +36,61 @@ class ActiveTouch : Hashable{
     }
 }
 
+enum TouchType{
+    case DRAG, TAP, SWIPE, NONE
+}
+
 struct FinishedTouch : Hashable {
     private var startTime:CFAbsoluteTime
     private var startLoc:CGPoint
     private var endTime:CFAbsoluteTime
     private var endLoc:CGPoint
+    var type:TouchType = TouchType.NONE
     
-    var hashValue : Int {get {return "\(startTime),\(startLoc)".hashValue}}
+    var hashValue:Int
     
     init(touch:ActiveTouch){
         startTime = touch.startTime
         startLoc = touch.startLoc
         endTime = CFAbsoluteTimeGetCurrent()
         endLoc = touch.currentLoc
+        hashValue = touch.hashValue
+        
+        type = getType()
     }
     
     func timeElapsed() -> Double{
         return CFAbsoluteTimeGetCurrent() - endTime
     }
+    
+    func duration()->Double{
+        return endTime - startTime
+    }
+    
+    func displacement() -> CGVector{
+        return (endLoc - startLoc).toVector()
+    }
+
+    func direction()->Direction{
+        if(abs(displacement().dx) > abs(displacement().dy)){
+            if(displacement().dx > 0){return Direction.RIGHT}
+            else{return Direction.LEFT}
+        }
+        else{
+            if(displacement().dy > 0){return Direction.UP}
+            else{return Direction.DOWN}
+        }
+    }
+    
+    func getType()->TouchType{
+        if (displacement().magnitude() < TouchConstants.swipeMinRadius) {return TouchType.TAP}
+        if (duration() < TouchConstants.tapMaxDuration){return TouchType.TAP}
+        if (duration() < TouchConstants.swipeMaxDuration){return TouchType.SWIPE}
+        else{return TouchType.DRAG}
+    }
 
 }
 
-//!!!!!!!!!!!!!!!!!!NOTE TO SELF:Create a Set data type for activeTouches and finishedTouches with a pop() method!!!!!!!!!
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 struct TouchManager{
     private static var activeTouches = Array<ActiveTouch>()
@@ -76,15 +108,19 @@ struct TouchManager{
         }
     }
     
-    static func touchEnded(touch:ActiveTouch){
-        if(contains(activeTouches, touch)){
-            removeTouch(touch)
-            addFinishedTouch(FinishedTouch(touch: touch))
-            pruneOldFinishedTouches()
+    static func touchEnded(hash:Int) -> FinishedTouch{
+        var ft = FinishedTouch(touch:getActiveTouch(hash)!)
+        addFinishedTouch(ft)
+        pruneOldFinishedTouches()
+        return ft
+    }
+    
+    private static func getActiveTouch(hash:Int) -> ActiveTouch?{
+        for touch:ActiveTouch in activeTouches{
+            if(touch.hashValue == hash){return touch}
         }
-        else{
-            println("ERROR: There is no touch \(touch.hashValue)")
-        }
+        println("ERROR: There is no touch \(hash)")
+        return nil
     }
     
     private static func removeTouch(touch:ActiveTouch){

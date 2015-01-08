@@ -62,6 +62,10 @@ public extension CGPoint {
         return self
     }
     
+    public func toVector()->CGVector{
+        return CGVector(dx: x, dy: y)
+    }
+    
     /**
     * Returns the length (magnitude) of the vector described by the CGPoint.
     */

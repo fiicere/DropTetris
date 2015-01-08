@@ -108,6 +108,11 @@ class MainGrid: Grid {
         updateIndicator()
     }
     
+    func moveIndicator(d:Direction){
+        indicator.moveTo(d)
+        updateIndicator()
+    }
+    
     func newIndicatorContents(c:Array<Coordinate>){
         indicator.newContents(c)
         updateIndicator()
