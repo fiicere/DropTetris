@@ -143,6 +143,10 @@ public extension CGPoint {
     public var topLeft : CGPoint {
         return CGPoint(x: 0,y: 1)
     }
+    
+    public func getString() -> String{
+        return "(\(x),\(y))"
+    }
 }
 
 /**

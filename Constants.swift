@@ -53,7 +53,7 @@ struct Layout{
 }
 
 struct TouchConstants{
-    static let swipeMinRadius:Double = 20 //Distance for a touch to be considered a swipe
+    static let swipeMinRadius:Double = 5 //Distance for a touch to be considered a swipe
     static let finishedTouchDuration = 0.75 //Time before deleting finished touches
     
     static let tapMaxDuration = 0.2 //Longest time a touch can be down to be considered a tap

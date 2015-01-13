@@ -34,6 +34,10 @@ class ActiveTouch : Hashable{
     func movedTo(loc:CGPoint){
         currentLoc = loc
     }
+    
+    func getString() -> String{
+        return "Touch \(hashValue): Begun \(startTime), StartLoc = \(startLoc.getString()), CurrentLoc: \(currentLoc.getString())"
+    }
 }
 
 enum TouchType{
@@ -98,8 +102,12 @@ struct TouchManager{
     
     static func touchBegan(loc:CGPoint, hash:Int){
         var newActiveTouch = ActiveTouch(loc: loc, hash: hash)
-        if(!contains(activeTouches, newActiveTouch)){activeTouches.append(newActiveTouch)}
-        else{println("ERROR: Duplicate touch \(newActiveTouch.hashValue)")}
+        if(!hasActiveTouch(hash)){activeTouches.append(newActiveTouch)}
+        else{
+            println("\nERROR: Duplicate Touch \(hash)")
+            println("Existing Touch: \(getActiveTouch(hash)?.getString())")
+            println("New Touch: \(newActiveTouch.getString())")
+        }
     }
     
     static func touchMoved(loc:CGPoint, hash:Int){
@@ -113,6 +121,13 @@ struct TouchManager{
         addFinishedTouch(ft)
         pruneOldFinishedTouches()
         return ft
+    }
+    
+    private static func hasActiveTouch(hash:Int) -> Bool{
+        for touch:ActiveTouch in activeTouches{
+            if touch.hashValue == hash{return true}
+        }
+        return false
     }
     
     private static func getActiveTouch(hash:Int) -> ActiveTouch?{

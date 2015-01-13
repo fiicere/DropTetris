@@ -29,6 +29,7 @@ class MainGrid: Grid {
             origin: (mainGridSize.toVector().half() + Layout.screenMarginSize.toVector()).toPoint());
         
         super.init(d: myGridDims)
+        updateIndicator()
     }
     
     
