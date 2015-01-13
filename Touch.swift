@@ -117,7 +117,9 @@ struct TouchManager{
     }
     
     static func touchEnded(hash:Int) -> FinishedTouch{
-        var ft = FinishedTouch(touch:getActiveTouch(hash)!)
+        var at = getActiveTouch(hash)!
+        var ft = FinishedTouch(touch: at)
+        removeTouch(at)
         addFinishedTouch(ft)
         pruneOldFinishedTouches()
         return ft

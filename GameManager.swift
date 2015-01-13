@@ -62,16 +62,6 @@ class GameManager: SKNode {
         if (t.type == TouchType.SWIPE){mainGrid.moveIndicator(t.direction())}
     }
     
-    private func fitsOnGrid(loc:CGPoint, occupied:Array<GridSq>) -> Bool{
-        var coord = mainGrid.getTouchedSq(loc)
-        
-        for subSQ:GridSq in occupied{
-            if(!contains(mainGrid.sqDict.keys, coord + subSQ.coord)){return false}
-        }
-        
-        return true
-    }
-    
     private func getTouchedSquare(loc:CGPoint) -> Coordinate{
         return mainGrid.getTouchedSq(loc)
     }
