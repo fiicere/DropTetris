@@ -58,6 +58,7 @@ class GameManager: SKNode {
             subGrid.rotate(Rotation.CW)
             mainGrid.newIndicatorContents(subGrid.occupied())
         }
+        
         var t = TouchManager.touchEnded(touch.hashValue)
         if (t.type == TouchType.SWIPE){mainGrid.moveIndicator(t.direction())}
     }

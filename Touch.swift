@@ -105,8 +105,6 @@ struct TouchManager{
         if(!hasActiveTouch(hash)){activeTouches.append(newActiveTouch)}
         else{
             println("\nERROR: Duplicate Touch \(hash)")
-            println("Existing Touch: \(getActiveTouch(hash)?.getString())")
-            println("New Touch: \(newActiveTouch.getString())")
         }
     }
     

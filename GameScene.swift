@@ -23,25 +23,30 @@ class GameScene: SceneWTransitions {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        if(!gameOver){
-            gameManager.newTouch(touches.anyObject() as UITouch)
+        for touch in touches{
+            if(!gameOver){
+                gameManager.newTouch(touch as UITouch)
+            }
         }
+
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        if(!gameOver){
-            gameManager.movedTouch(touches.anyObject() as UITouch)
+        for touch in touches{
+            if(!gameOver){
+                gameManager.movedTouch(touch as UITouch)
+            }
         }
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        if(gameOver){
-            self.fadeToThisScene(GameScene(size: size))
-        }
-        else{
-            let touch = touches.anyObject() as UITouch
-            let touchLocation = touch.locationInNode(self)
-            gameManager.touchEnded(touch)
+        for touch in touches{
+            if(gameOver){
+                self.fadeToThisScene(GameScene(size: size))
+            }
+            else{
+                gameManager.touchEnded(touch as UITouch)
+            }
         }
     }
     
