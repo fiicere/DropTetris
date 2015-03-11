@@ -49,7 +49,7 @@ class Touch : Hashable{
     }
     
     func end()->PointMark{
-        return history[history.endIndex]
+        return history[history.endIndex - 1]
     }
     
     func avgLoc() -> CGPoint{
@@ -73,7 +73,7 @@ struct TouchManager{
     
     static func touchMoved(hash:Int, loc:CGPoint){
         if (hasActiveTouch(hash)){getActiveTouch(hash).movedTo(loc)}
-        fatalError("ERROR: No Active Touch: \(hash)") // REMOVE AFTER TESTING
+        else{fatalError("ERROR: No Active Touch: \(hash)")} // REMOVE AFTER TESTING
     }
     
     static func touchEnded(hash:Int){
