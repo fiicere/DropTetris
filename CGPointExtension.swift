@@ -45,6 +45,7 @@ public extension CGPoint {
     static var topRight:CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 1, dy: 1)).toPoint()
 
     static var middle:CGPoint = (Layout.screenSize.toVector() * CGVector(dx: 0.5, dy: 0.5)).toPoint()
+    static var nonePoint:CGPoint = CGPoint(x: Double.infinity, y: Double.infinity)
 
     /**
     * Creates a new CGPoint given a CGVector.

@@ -27,3 +27,32 @@ enum Direction : String{
         }
     }
 }
+
+enum Rotation : String{
+    case CW = "CW", CCW = "CCW", NONE = "NONE"
+}
+
+enum Transformation : String{
+    case UP="UP", DOWN = "DOWN", LEFT="LEFT", RIGHT="RIGHT", CW = "CW", CCW = "CCW", NONE="NONE"
+    
+    static let all : Array<Transformation> = [UP, DOWN, LEFT, RIGHT, CW, CCW]
+    
+    func opposite() -> Transformation{
+        switch self{
+        case UP:
+            return DOWN
+        case DOWN:
+            return UP
+        case LEFT:
+            return RIGHT
+        case RIGHT:
+            return LEFT
+        case CW:
+            return CCW
+        case CCW:
+            return CW
+        default:
+            return NONE
+        }
+    }
+}

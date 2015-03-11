@@ -35,7 +35,7 @@ class GameManager: SKNode {
         if(mainGrid.isInSq(loc)){
             mainGrid.moveIndicator(loc)
         }
-        TouchManager.touchBegan(loc, hash: touch.hash)
+        OldTouchManager.touchBegan(loc, hash: touch.hash)
     }
     
     func movedTouch(touch:UITouch){
@@ -43,7 +43,7 @@ class GameManager: SKNode {
         if(mainGrid.isInSq(loc)){
             mainGrid.moveIndicator(loc)
         }
-        TouchManager.touchMoved(loc, hash: touch.hash)
+        OldTouchManager.touchMoved(loc, hash: touch.hash)
     }
     
     func touchEnded(touch:UITouch){
@@ -59,7 +59,7 @@ class GameManager: SKNode {
             mainGrid.newIndicatorContents(subGrid.occupied())
         }
         
-        var t = TouchManager.touchEnded(touch.hashValue)
+        var t = OldTouchManager.touchEnded(touch.hashValue)
         if (t.type == TouchType.SWIPE){mainGrid.moveIndicator(t.direction())}
     }
     

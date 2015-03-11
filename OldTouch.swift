@@ -96,7 +96,7 @@ struct FinishedTouch : Hashable {
 }
 
 
-struct TouchManager{
+struct OldTouchManager{
     private static var activeTouches = Array<ActiveTouch>()
     private static var finishedTouches = Array<FinishedTouch>()
     

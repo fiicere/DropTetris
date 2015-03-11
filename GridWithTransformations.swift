@@ -8,11 +8,6 @@
 
 import Foundation
 
-
-enum Rotation : String{
-    case CW = "CW", CCW = "CCW", NONE = "NONE"
-}
-
 class GridWithTransformations : Grid{
     
     override init(d:GridDimension){
