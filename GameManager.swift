@@ -36,7 +36,7 @@ class GameManager: SKNode {
             mainGrid.moveIndicator(loc)
         }
         OldTouchManager.touchBegan(loc, hash: touch.hash)
-    }
+        }
     
     func movedTouch(touch:UITouch){
         var loc = touch.locationInNode(mainGrid)

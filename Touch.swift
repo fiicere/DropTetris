@@ -62,27 +62,21 @@ class Touch : Hashable{
 
 }
 
-class TouchManager{
-    var active:[Touch]
-    var finished:[Touch]
-    var gesture:Gesture
+struct TouchManager{
+    static var active = Array<Touch>()
+    static var finished = Array<Touch>()
+    static var gesture = Gesture.None()
     
-    init(){
-        active = Array()
-        finished = Array()
-        gesture = Gesture.None()
-    }
-    
-    func touchBegan(hash:Int, loc:CGPoint){
+    static func touchBegan(hash:Int, loc:CGPoint){
         active.append(Touch(loc: loc, hash: hash))
     }
     
-    func touchMoved(hash:Int, loc:CGPoint){
+    static func touchMoved(hash:Int, loc:CGPoint){
         if (hasActiveTouch(hash)){getActiveTouch(hash).movedTo(loc)}
         fatalError("ERROR: No Active Touch: \(hash)") // REMOVE AFTER TESTING
     }
     
-    func touchEnded(hash:Int){
+    static func touchEnded(hash:Int){
         if (hasActiveTouch(hash)){
             finished.append(getActiveTouch(hash))
             removeActiveTouch(hash)
@@ -90,17 +84,17 @@ class TouchManager{
         convertFinishedToGesture()
     }
     
-    private func hasGesture() -> Bool{
+    static private func hasGesture() -> Bool{
         return !gesture.isNone()
     }
     
-    func popGesture() -> Gesture{
+    static func popGesture() -> Gesture{
         var g = gesture
         gesture = Gesture.None()
         return g
     }
     
-    private func convertFinishedToGesture(){
+    static private func convertFinishedToGesture(){
         //If there are no active touches, convert finished to gestures
         if (active.isEmpty){
             if(finished.count > 2 || finished.count < 1){print("\(finished.count) touches not permitted; only 1 or 2")}
@@ -113,7 +107,7 @@ class TouchManager{
         //Just wait for it to finish
     }
     
-    private func parseTouch(t:Touch) -> Gesture{
+    static private func parseTouch(t:Touch) -> Gesture{
         var g = Gesture.None()
         
         // Check for Swipe
@@ -137,7 +131,7 @@ class TouchManager{
         return g
     }
     
-    private func parseDuoTouch(t1:Touch, t2: Touch) -> Gesture{
+    static private func parseDuoTouch(t1:Touch, t2: Touch) -> Gesture{
         var g = Gesture.None()
         g.type = GestureType.ROTATE
         
@@ -151,7 +145,7 @@ class TouchManager{
         return g
     }
     
-    private func removeActiveTouch(hash:Int){
+    static private func removeActiveTouch(hash:Int){
         var i=0
         while i < active.count{
             if active[i].hashValue == hash{active.removeAtIndex(i)}
@@ -159,14 +153,14 @@ class TouchManager{
         }
     }
     
-    private func getActiveTouch(hash:Int) -> Touch{
+    static private func getActiveTouch(hash:Int) -> Touch{
         for t:Touch in active{
             if t.hashValue == hash {return t}
         }
         fatalError("ERROR: No Active Touch: \(hash)")
     }
     
-    private func hasActiveTouch(hash:Int) -> Bool{
+    static private func hasActiveTouch(hash:Int) -> Bool{
         for t:Touch in active{
             if t.hashValue == hash {return true}
         }
