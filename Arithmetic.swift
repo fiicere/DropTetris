@@ -246,7 +246,30 @@ public func == (left: Int, right: CGFloat) -> Bool {
     return CGFloat(left) == right
 }
 
+//Improved Modulus
+public func mod(num: Double, base:Double) -> Double{
+    var remainder = num % base
+    if(remainder < 0){return remainder + base}
+    return remainder
+}
 
+public func mod(num: CGFloat, base:CGFloat) -> CGFloat{
+    var remainder = num % base
+    if(remainder < 0){return remainder + base}
+    return remainder
+}
+
+public func mod(num: CGFloat, base:Double) -> Double{
+    var remainder = Double(num) % base
+    if(remainder < 0){return remainder + base}
+    return remainder
+}
+
+public func mod(num: Double, base:CGFloat) -> Double{
+    var remainder = num % Double(base)
+    if(remainder < 0){return remainder + Double(base)}
+    return remainder
+}
 
 
 

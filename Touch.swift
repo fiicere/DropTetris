@@ -51,6 +51,14 @@ class Touch : Hashable{
     func end()->PointMark{
         return history[history.endIndex]
     }
+    
+    func avgLoc() -> CGPoint{
+        var avg = CGPoint.zeroPoint
+        for p:PointMark in history{
+            avg += p.loc
+        }
+        return avg / CGPoint(x: history.count, y: history.count)
+    }
 
 }
 
@@ -62,7 +70,7 @@ class TouchManager{
     init(){
         active = Array()
         finished = Array()
-        gesture = Gesture.None() // TODO: Should be equal to the default nil gesture
+        gesture = Gesture.None()
     }
     
     func touchBegan(hash:Int, loc:CGPoint){
@@ -71,6 +79,7 @@ class TouchManager{
     
     func touchMoved(hash:Int, loc:CGPoint){
         if (hasActiveTouch(hash)){getActiveTouch(hash).movedTo(loc)}
+        fatalError("ERROR: No Active Touch: \(hash)") // REMOVE AFTER TESTING
     }
     
     func touchEnded(hash:Int){
@@ -81,19 +90,65 @@ class TouchManager{
         convertFinishedToGesture()
     }
     
-    func popGesture()->Gesture{
+    private func hasGesture() -> Bool{
+        return !gesture.isNone()
+    }
+    
+    func popGesture() -> Gesture{
         var g = gesture
-        //TODO: Gesture = default nil gesture
+        gesture = Gesture.None()
         return g
     }
     
     private func convertFinishedToGesture(){
+        //If there are no active touches, convert finished to gestures
         if (active.isEmpty){
-            // Convert finished to a gesture
-            // gesture = finishedGesture
+            if(finished.count > 2 || finished.count < 1){print("\(finished.count) touches not permitted; only 1 or 2")}
+            else if(finished.count == 1){gesture = parseTouch(finished[0])}
+            else if(finished.count == 2){gesture = parseDuoTouch(finished[0], t2: finished[1])}
+            
             finished = Array()
         }
         //If not, then one of the multi-touch touches isn't finished yet
+        //Just wait for it to finish
+    }
+    
+    private func parseTouch(t:Touch) -> Gesture{
+        var g = Gesture.None()
+        
+        // Check for Swipe
+        if(t.durationInSeconds() < TouchConstants.swipeMaxDuration && t.displacement().magnitude() > TouchConstants.swipeMinRadius)
+            {g.type = GestureType.SWIPE}
+        else{g.type = GestureType.CLICK}
+        
+        // Get Location
+        g.loc = t.avgLoc()
+        
+        // Get Direction
+        if(abs(t.displacement().dx) >= abs(t.displacement().dy)){
+            if(t.displacement().dx > 0){g.transformation = Transformation.RIGHT}
+            if(t.displacement().dx <= 0){g.transformation = Transformation.LEFT}
+        }
+        else if(abs(t.displacement().dx) < abs(t.displacement().dy)){
+            if(t.displacement().dy > 0){g.transformation = Transformation.UP}
+            if(t.displacement().dy <= 0){g.transformation = Transformation.DOWN}
+        }
+        
+        return g
+    }
+    
+    private func parseDuoTouch(t1:Touch, t2: Touch) -> Gesture{
+        var g = Gesture.None()
+        g.type = GestureType.ROTATE
+        
+        var startAngle = getAngle(t1.start().loc, t2.start().loc)
+        var endAngle = getAngle(t1.end().loc, t2.end().loc)
+        var changeInAngle = mod(endAngle - startAngle, 2 * M_PI)
+        
+        if(changeInAngle > M_PI){g.transformation = Transformation.CW}
+        else{g.transformation = Transformation.CCW}
+        
+        return g
     }
     
     private func removeActiveTouch(hash:Int){
@@ -117,22 +172,24 @@ class TouchManager{
         }
         return false
     }
-    
-    
-    
-    
 }
 
+enum GestureType{
+    case SWIPE, ROTATE, CLICK, NONE
+}
+
+
 struct Gesture{
+    var type:GestureType
     var loc : CGPoint
     var transformation : Transformation
     
     static func None() -> Gesture{
-        return Gesture(loc: CGPoint.nonePoint, transformation: Transformation.NONE)
+        return Gesture(type: GestureType.NONE, loc: CGPoint.zeroPoint, transformation: Transformation.NONE)
     }
     
     func isNone() -> Bool{
-        return (transformation == Transformation.NONE && loc == CGPoint.nonePoint)
+        return type == GestureType.NONE
     }
 }
 

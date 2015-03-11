@@ -150,6 +150,10 @@ public extension CGPoint {
     }
 }
 
+public func getAngle(left:CGPoint, right:CGPoint) -> Double{
+    return Double((right - left).angle)
+}
+
 /**
 * Adds two CGPoint values and returns the result as a new CGPoint.
 */
