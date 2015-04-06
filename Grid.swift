@@ -44,9 +44,11 @@ class Grid: SKSpriteNode {
     }
     
     func tick(){
-        for sq:GridSq in sqDict.values{
-            sq.tick()
-        }
+        for sq:GridSq in sqDict.values{sq.tick()}
+    }
+    
+    private func parseGesture(){
+        
     }
     
     func occupied() -> Array<GridSq>{

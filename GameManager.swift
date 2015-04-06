@@ -30,40 +30,60 @@ class GameManager: SKNode {
         Difficulty.resetDifficulty()
     }
     
+    /////////////////////TOUCH HANDLING////////////////////////
+
     func newTouch(touch:UITouch){
-        var loc = touch.locationInNode(mainGrid)
-        if(mainGrid.isInSq(loc)){
-            mainGrid.moveIndicator(loc)
-        }
+        var loc = touch.locationInNode(self)
         TouchManager.touchBegan(touch.hash, loc: loc)
     }
     
     func movedTouch(touch:UITouch){
-        var loc = touch.locationInNode(mainGrid)
-        if(mainGrid.isInSq(loc)){
-            mainGrid.moveIndicator(loc)
-        }
+        var loc = touch.locationInNode(self)
         TouchManager.touchMoved(touch.hash, loc: loc)
     }
     
     func touchEnded(touch:UITouch){
-        var loc:CGPoint = touch.locationInNode(mainGrid)
-        
-        if(mainGrid.isInSq(loc)){
-            attemptTransferTo(getTouchedSquare(loc))
-        }
-        
-        loc = touch.locationInNode(subGrid)
-        if(subGrid.isInSq(loc)){
-            subGrid.rotate(Rotation.CW)
-            mainGrid.newIndicatorContents(subGrid.occupied())
-        }
-        TouchManager.touchEnded(touch.hash)
+        var loc:CGPoint = touch.locationInNode(self)
+        TouchManager.touchEnded(touch.hash, loc: loc)
+        parseGesture()
     }
     
     private func getTouchedSquare(loc:CGPoint) -> Coordinate{
         return mainGrid.getTouchedSq(loc)
     }
+    
+    private func parseGesture(){
+        var g:Gesture = TouchManager.popGesture()
+        
+        switch g.type{
+        case GestureType.CLICK:
+            parseClick(g)
+        case GestureType.SWIPE:
+            parseSwipe(g)
+        case GestureType.ROTATE:
+            parseRotate(g)
+        default:
+            return
+        }
+        
+    }
+    
+    private func parseClick(g:Gesture){
+        if(subGrid.frame.contains(g.loc)){} //TODO: Send click to subGrid: Rotate subGrid, rotate mainGrid.indicator
+        else if(mainGrid.frame.contains(g.loc)){} //TODO: Send click to mainGrid: move Indicator, drop if there already
+        else{} //TODO: Nothing?
+    }
+    
+    private func parseSwipe(g:Gesture){
+        //TODO: Send click to mainGrid, move Indicator
+    }
+    
+    private func parseRotate(g:Gesture){
+        //TODO: Send click to subGrid: Rotate subGrid, rotate mainGrid.indicator
+    }
+    
+    //IMPORTANT TODO NOTE!!!
+    // There are actually only 3 cases, rotate, translate, and drop. You can design accordingly
     
     private func attemptTransferTo(coord:Coordinate){
         if(canTransferTo(coord)){

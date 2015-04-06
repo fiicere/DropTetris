@@ -76,7 +76,8 @@ struct TouchManager{
         else{fatalError("ERROR: No Active Touch: \(hash)")} // REMOVE AFTER TESTING
     }
     
-    static func touchEnded(hash:Int){
+    static func touchEnded(hash:Int, loc:CGPoint){
+        touchMoved(hash, loc: loc)
         if (hasActiveTouch(hash)){
             finished.append(getActiveTouch(hash))
             removeActiveTouch(hash)
